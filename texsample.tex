@@ -1,0 +1,388 @@
+\documentclass{article}
+
+\usepackage[dvipdfm]{graphicx}
+\usepackage{curves}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{makeidx}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{ucs}
+\usepackage{texsample}
+\usepackage{wallpaper}
+\usepackage{rotating}
+\usepackage[bookmarksnumbered,colorlinks,plainpages,backref,unicode]{hyperref}
+
+\hypersetup{pdfpagemode=FullScreen}
+
+\newsavebox{\boxA}
+\newsavebox{\boxB}
+\newsavebox{\boxC}
+\newsavebox{\boxD}
+\newsavebox{\boxE}
+\newsavebox{\boxF}
+\newsavebox{\boxG}
+\newsavebox{\boxH}
+\newsavebox{\boxI}
+\newsavebox{\boxJ}
+\newsavebox{\boxK}
+\newsavebox{\boxL}
+\newsavebox{\boxM}
+\newsavebox{\boxN}
+\newsavebox{\boxO}
+\newsavebox{\boxP}
+\newsavebox{\boxQ}
+\newsavebox{\boxR}
+\newsavebox{\boxS}
+\newsavebox{\boxT}
+\newsavebox{\boxU}
+\newsavebox{\boxV}
+\newsavebox{\boxW}
+\newsavebox{\boxX}
+\newsavebox{\boxY}
+\newsavebox{\boxZ}
+
+\makeindex
+
+ \paperwidth=190mm
+ \paperheight=130mm
+ \textwidth=180mm
+ \textheight=120mm
+ \evensidemargin=-20mm
+ \oddsidemargin=-20mm
+ \topmargin=-10mm
+ \headheight=-10mm
+ \headsep=0mm
+
+ \emergencystretch=16pt
+
+
+\begin{document}
+
+\newcommand{\mylabel}[1]{\label{#1} \hypertarget{HT#1}{}}
+
+\def\ifundefined#1{\expandafter\ifx\csname#1\endcsname\relax}
+
+\newcounter{MakExecisePdf}
+\setcounter{MakExecisePdf}{0}
+\renewcommand{\theMakExecisePdf}{{\Roman{section}.}\arabic{MakExecisePdf}}
+\newcounter{MakExecisePdfPrint}
+\setcounter{MakExecisePdfPrint}{0}
+ \def\MakExecisePdf#1#2{\newpage\global\refstepcounter{MakExecisePdf}
+   \expandafter\newcounter{MakExecise\roman{MakExecisePdf}Pdf}
+   \mbox{\textbf{Задача~{\Roman{section}.}\arabic{MakExecisePdf}.}}
+   \addcontentsline{toc}{section}{Задача~{\Roman{section}.}\arabic{MakExecisePdf}}
+   {\large (\hyperlink{HTMakExecisePdf\arabic{MakExecisePdf}answ}{Ответ приведен на
+   стр.\pageref{MakExecisePdf\arabic{MakExecisePdf}answ}}.)}
+   \mylabel{MakExecisePdf\arabic{MakExecisePdf}}
+   \expandafter\def\csname
+   MakExecise\roman{MakExecisePdf}text\endcsname{#1}
+   \expandafter\def\csname
+   MakExecise\roman{MakExecisePdf}answ\endcsname{#2}
+   \csname MakExecise\roman{MakExecisePdf}text\endcsname
+   \sloppy\par}
+
+ \def\MakExPrinAnsw{\setcounter{MakExecisePdfPrint}{0}
+  \loop
+   \ifnum\arabic{MakExecisePdfPrint}<\arabic{MakExecisePdf}
+   \newpage
+   \refstepcounter{MakExecisePdfPrint}
+   \noindent\centerline{\mbox{\Huge\textbf{Решение задачи~\arabic{MakExecisePdfPrint}.}}}\par
+   \hyperlink{HTMakExecisePdf\arabic{MakExecisePdfPrint}}
+   {\mbox{\textbf{Задача~\arabic{MakExecisePdfPrint}.}}}\quad
+   \csname MakExecise\roman{MakExecisePdfPrint}text\endcsname
+   \newpage
+   \hyperlink{HTMakExecisePdf\arabic{MakExecisePdfPrint}}
+   {\mbox{\textbf{Задача~\arabic{MakExecisePdfPrint}.}}}~%
+   \csname MakExecise\roman{MakExecisePdfPrint}text\endcsname
+   \mylabel{MakExecisePdf\arabic{MakExecisePdfPrint}answ}
+   \sloppy\par
+   {\bf Ответ.}~\csname MakExecise\roman{MakExecisePdfPrint}answ\endcsname
+  \repeat}
+
+\def\MakeExNewpage{\newpage
+   {%\LARGE
+   \hyperlink{HTMakExecisePdf\arabic{MakExecisePdfPrint}}
+   {\mbox{\textbf{Задача~\arabic{MakExecisePdfPrint}.}}}~%
+   \csname MakExecise\roman{MakExecisePdfPrint}text\endcsname\newline}
+\rule{\parindent}{0pt}\textbf{Ответ.}~}
+
+\def\ClearExNewpage{\newpage
+   {%\LARGE
+   \hyperlink{HTMakExecisePdf\arabic{MakExecisePdfPrint}}
+   {\mbox{\textbf{Задача~\arabic{MakExecisePdfPrint}.}}}~%
+   \newline}}
+
+
+\newcounter{MakRemarkPdf}
+\setcounter{MakRemarkPdf}{0}
+\renewcommand{\theMakRemarkPdf}{{\Roman{section}.}\arabic{MakRemarkPdf}}
+\newcounter{MakRemarkPdfPrint}
+\setcounter{MakRemarkPdfPrint}{0}
+ \def\MakRemarkPdf#1#2{\newpage\global\refstepcounter{MakRemarkPdf}
+   \expandafter\newcounter{MakRemark\roman{MakRemarkPdf}Pdf}
+   \textbf{Замечание~{\Roman{section}.}\arabic{MakRemarkPdf}.}
+   \addcontentsline{toc}{section}{Замечание~{\Roman{section}.}\arabic{MakRemarkPdf}}
+   {\large (\hyperlink{HTMakRemarkPdf\arabic{MakRemarkPdf}answ}{Ответ приведен на
+   стр.\pageref{MakRemarkPdf\arabic{MakRemarkPdf}answ}}.)}
+   \mylabel{MakRemarkPdf\arabic{MakRemarkPdf}}
+   \expandafter\def\csname
+   MakRemark\roman{MakRemarkPdf}text\endcsname{#1}
+   \expandafter\def\csname
+   MakRemark\roman{MakRemarkPdf}answ\endcsname{#2}
+   \csname MakRemark\roman{MakRemarkPdf}text\endcsname
+   \sloppy\par}
+
+ \def\MakRemPrinAnsw{\setcounter{MakRemarkPdfPrint}{0}
+  \loop
+   \ifnum\arabic{MakRemarkPdfPrint}<\arabic{MakRemarkPdf}
+   \newpage
+   \refstepcounter{MakRemarkPdfPrint}
+   \textbf{Замечание~{\Roman{section}.}\arabic{MakRemarkPdfPrint}.}~%
+   \csname MakRemark\roman{MakRemarkPdfPrint}text\endcsname
+   \mylabel{MakRemarkPdf\arabic{MakRemarkPdfPrint}answ}
+   \sloppy\par
+   {\bf Ответ.}~%
+   \csname MakRemark\roman{MakRemarkPdfPrint}answ\endcsname
+  \repeat}
+
+
+
+
+
+
+
+\def\TwoBlock#1#2#3#4#5{{\unitlength=\textwidth%
+     {\makebox(#1,#3)[lt]{\parbox{#1\textwidth}{#4}}}~~%
+     {\makebox(#2,#3)[rt]{\parbox{#2\textwidth}{#5}}}}}
+
+\def\fTwoBlock#1#2#3#4#5{{\unitlength=\textwidth%
+     \framebox{\makebox(#1,#3)[lt]{\parbox{#1\textwidth}{#4}}}~~%
+     \framebox{\makebox(#2,#3)[rt]{\parbox{#2\textwidth}{#5}}}}}
+
+\newcounter{TabCountGlb}
+\newcounter{RisCountGlb}
+\setcounter{TabCountGlb}{0} \setcounter{RisCountGlb}{0}
+
+
+\newcounter{zaplatka}
+\setcounter{zaplatka}{0}
+\newcounter{zaplatPrint}
+\setcounter{zaplatPrint}{0}
+\newcounter{setka}
+\def\setka{%
+     \multiput(-170,-110)(5,0){69}{%
+        \multiput(0,0)(0,1){220}{\circle*{0.3}}}
+     \multiput(-170,-100)(0,5){45}{%
+        \multiput(0,0)(1,0){340}{\circle*{0.3}}}
+      \multiput(-163,00.1)(10,0){34}{{\thicklines\line( 1, 0){6}}}
+      \multiput(-163,-0.1)(10,0){34}{{\thicklines\line( 1, 0){6}}}
+       \multiput(00.1,-113)(0,10){22}{{\thicklines\line( 0, 1){6}}}
+       \multiput(-0.1,-113)(0,10){22}{{\thicklines\line( 0, 1){6}}}
+     \setcounter{setka}{0}
+     \multiput(10,-1)(10,0){17}{\addtocounter{setka}{10}\makebox(0,0)[ct]{{\large\arabic{setka}}}}
+     \setcounter{setka}{0}
+     \multiput(-1,10)(0,10){11}{\addtocounter{setka}{10}\makebox(0,0)[rc]{{\large\arabic{setka}}}}
+     \setcounter{setka}{0}
+     \multiput(-10,-1)(-10,0){9}{\addtocounter{setka}{10}\makebox(0,0)[ct]{{\large-\arabic{setka}}}}
+     \setcounter{setka}{0}
+     \multiput(-1,-10)(0,-10){09}{\addtocounter{setka}{10}\makebox(0,0)[rc]{{\large-\arabic{setka}}}}
+     }
+\def\zaplatka#1{\par\medskip
+                \refstepcounter{zaplatka}\mylabel{Zapl\arabic{zaplatka}}
+                \centerline{\rule{0.3\textwidth}{0.4pt} {\LARGE\bf
+                            Заплатка~\arabic{zaplatka}}
+                            \rule{0.3\textwidth}{0.4pt}}
+                \par{\sf #1}
+                \expandafter\def\csname ZaplaText\roman{zaplatka}\endcsname{#1}
+                \par\medskip\centerline{\rule{0.8\textwidth}{0.4pt}}
+                \par\medskip}
+
+
+\newcounter{MyCommentPdfMake}
+\setcounter{MyCommentPdfMake}{0}
+\newcounter{MyCommentPdfPrint}
+\setcounter{MyCommentPdfPrint}{0}
+ \def\MyCommentPdf#1{\par\medskip
+                \refstepcounter{MyCommentPdfMake}\mylabel{MyComm\arabic{MyCommentPdfMake}}
+                \textsf{\textbf{Ссылка~\arabic{MyCommentPdfMake}.}
+                  Если возникли вопросы, см.
+                  \hyperlink{HTMyCommentPdfPrint\arabic{MyCommentPdfMake}}{комментарий на
+                  стр.~\pageref{MyCommentPdfPrint\arabic{MyCommentPdfMake}}}.}
+                  \global\expandafter\def\csname MyCommText\roman{MyCommentPdfMake}\endcsname{#1}
+                \par\medskip}
+
+ \def\MyCommentPdfPrint{%
+      \setcounter{MyCommentPdfPrint}{0}
+       \ifnum\value{MyCommentPdfMake}>0
+       \loop
+       \ifnum\value{MyCommentPdfPrint}<\value{MyCommentPdfMake}
+       \refstepcounter{MyCommentPdfPrint}
+       \mylabel{MyCommentPdfPrint\arabic{MyCommentPdfPrint}}
+       {\Large
+       \hyperlink{HTMyComm\arabic{MyCommentPdfPrint}}
+       {\textbf{Комментарий к ссылке~\ref{MyComm\arabic{MyCommentPdfPrint}} на
+      стр.~\pageref{MyComm\arabic{MyCommentPdfPrint}}.}}
+       \expandafter\csname MyCommText\roman{MyCommentPdfPrint}\endcsname
+       \newpage}
+       \repeat
+      \fi}
+
+
+
+\newcommand{\bookname}{Векторная алгебра и аналитическая геометрия}
+\newcommand{\booksubname}[1]{Для студентов заочного факультета всех
+                             специальностей}
+\renewcommand{\figurename}{Рис.}
+\renewcommand{\contentsname}{Оглавление}
+\renewcommand{\chaptername}{Глава}
+\renewcommand{\indexname}{Предметный указатель}
+\renewcommand{\tablename}{Таблица}
+\renewcommand{\refname}{Список литературы}
+\renewcommand{\bibname}{Список литературы}
+\renewcommand{\indexname}{Предметный указатель}
+\newtheorem{defnt}{\noindent \bf Определение}%[section]
+\newtheorem{thm}{\noindent \bf Теорема}%[section]
+\newtheorem{lmm}{\noindent \bf Лемма}%[section]
+\newtheorem{prop}{\noindent \bf Утверждение}[section]
+\newtheorem{prim}{\noindent \bf Пример}%[section]
+\newtheorem{zad}{\noindent \bf Задача}%[section]
+\newtheorem{quest}{\noindent \bf Вопрос}%[section]
+\newtheorem{cons}{\noindent \bf Следствие}%[section]
+\newtheorem{zam}{\noindent \bf Замечание}%[section]
+\newtheorem{sogl}{\noindent \bf Соглашение}%[section]
+\newtheorem{aim}{\noindent \bf Цель}%[section]
+
+\newcommand{\defntName}[1]{\medskip\noindent\mbox{\bf Определение~#1.}}%[section]
+\newcommand{\thmName}[1]{\medskip\noindent\mbox{\bf Теорема~#1.}}%[section]
+\newcommand{\lmmName}[1]{\medskip\noindent\mbox{\bf Лемма~#1.}}%[section]
+\newcommand{\propName}[1]{\medskip\noindent\mbox{\bf Утверждение~#1.}}%[section]
+\newcommand{\primName}[1]{\medskip\noindent\mbox{\bf Пример~#1.}}%[section]
+\newcommand{\zadName}[1]{\medskip\noindent\mbox{\bf Задача~#1.}}%[section]
+\newcommand{\questName}[1]{\medskip\noindent\mbox{\bf Вопрос~#1.}}%[section]
+\newcommand{\consName}[1]{\medskip\noindent\mbox{\bf Следствие~#1.}}%[section]
+\newcommand{\zamName}[1]{\medskip\noindent\mbox{\bf Замечание~#1.}}%[section]
+\newcommand{\soglName}[1]{\medskip\noindent\mbox{\bf Соглашение~#1.}}%[section]
+\newcommand{\aimName}[1]{\medskip\noindent\mbox{\bf Цель~#1.}}%[section]
+
+\newcommand{\Arg}{\mathop{\rm Arg}\nolimits}
+\newcommand{\tr}{\mathop{\rm tr}\nolimits}
+\newcommand{\Rg}{\mathop{\rm Rg}\nolimits}
+\newcommand{\Ker}{\mathop{\rm Ker}\nolimits}
+\newcommand{\spec}{\mathop{\rm spec}\nolimits}
+\newcommand{\diag}{\mathop{\rm diag}\nolimits}
+\newcommand{\vectrup}[1]{\vectr{#1}\hspace{-0.5em}\rule{0pt}{2.5
+                         ex}'\hspace{0.2em}\rule{0pt}{1ex}}
+\newcommand{\nablavec}{\overrightarrow{\bigtriangledown}}
+\newcommand{\nablacoord}[1]{\bigtriangledown_{#1}}
+
+\newcommand{\vectr}[1]{\overrightarrow{\bf #1}}
+\newcommand{\prc}{\mathop{\mbox{\rm пр}}\nolimits}
+\newcommand{\diez}{\mathop{\#}\limits}
+\newcommand{\supp}{\mathop{\rm supp}\nolimits}
+\newcommand{\Irr}{\mathop{\rm Irr}\nolimits}
+\newcommand{\bigref}[1]{~\ref{#1}, стр.\pageref{#1}}
+\newcommand{\mathref}[1]{~(\ref{#1}), стр.\pageref{#1}}
+\newcounter{bookyear}
+\setcounter{bookyear}{2012}
+
+\def\izdat#1{\ifnum#1<2 Редакционно-издательский отдел ГОУ ВПО УГТУ-УПИ\fi
+             \ifnum#1=2 Редакционно-издательский отдел ГОУ ВПО УГТУ-УПИ\fi }
+\def\adressIzdat{620002, Екатеринбург, ул.~Мира, 19}
+\def\ISBN{ISBN ?-???-??????-?}
+
+\newcommand{\PdfSection}[9]{\newpage\noindent
+\ifnum#2=0\refstepcounter{section}\fi{\huge\bf\thesection.~#1}%
+\ifnum#2=0\addcontentsline{toc}{section}{\thesection.~#1}\fi}
+
+\newcommand{\PdfSubSection}[9]{\newpage\noindent
+\ifnum#2=0\refstepcounter{subsection}\fi{\huge\bf\thesubsection.~#1}%
+\ifnum#2=0\addcontentsline{toc}{subsection}{\thesubsection.~#1}\fi}
+
+\newcommand{\PdfSubSubSection}[9]{\newpage\noindent
+\ifnum#2=0\refstepcounter{subsubsection}\fi{\huge\bf\thesubsubsection.~#1}%
+\ifnum#2=0\addcontentsline{toc}{subsubsection}{\thesubsubsection.~#1}\fi}
+
+
+
+\newcommand{\PrimCom}[9]{%
+    %#1 --- название примера
+    %#2 --- метка
+    %#3 --- текст примера
+   \expandafter\newcommand\csname
+   ComTextPrim#2\endcsname[6]{
+    \ifundefined{ComPrim#2}
+     \newpage\noindent
+     \expandafter\newcommand\csname ComPrim#2\endcsname[6]{#3}
+     \begin{prim}\expandafter\mylabel{Prim#2}
+      \addcontentsline{toc}{section}{Пример~\arabic{prim} #1}
+      \csname ComPrim#2\endcsname{#4}{#5}{#6}{#7}{#8}{#9}
+     \end{prim}
+    \else
+      \newpage\noindent
+     \expandafter\renewcommand\csname ComPrim#2\endcsname[6]{#3}
+     \addtocounter{prim}{-2}\refstepcounter{prim}
+     \begin{prim}
+      \csname ComPrim#2\endcsname{#4}{#5}{#6}{#7}{#8}{#9}
+     \end{prim}
+    \fi}
+  }
+
+
+\newcommand{\ThmEnvCom}[9]{%
+    %#1 --- тип окружения: thm, lmm, defnt, zam
+    %#2 --- метка
+    %#3 --- формулировка теоремы, определения и др.
+   \expandafter\newcommand\csname ComText#1#2\endcsname[6]{
+    \ifundefined{Com#1#2}
+     \expandafter\newcommand\csname Com#1#2\endcsname[6]{#3}
+     \csname #1Name\endcsname{\ref{#1#2}}\refstepcounter{#1}\expandafter\mylabel{#1#2}%
+      \textit{\csname Com#1#2\endcsname{\#1}{\#2}{\#3}{\#4}{\#5}{\#6}}
+    \else
+     \expandafter\renewcommand\csname Com#1#2\endcsname[6]{#3}
+     \csname #1Name\endcsname{\ref{#1#2}}
+      \textit{\csname Com#1#2\endcsname{\#1}{\#2}{\#3}{\#4}{\#5}{\#6}}
+    \fi}
+  }
+
+
+\newlength{\PictureWidthAw}
+\newlength{\ParagraphWidthAw}
+\newcounter{PictureWidthAn}
+\newcounter{ParagraphWidthAn}
+
+\newcommand{\PictText}[9]{\noindent{\unitlength=1mm%
+\setcounter{PictureWidthAn}{#1}%
+\setcounter{ParagraphWidthAn}{180}%
+\addtocounter{ParagraphWidthAn}{-\arabic{PictureWidthAn}}%
+\addtocounter{ParagraphWidthAn}{-7}%
+\setlength{\PictureWidthAw}{\arabic{PictureWidthAn}mm}%
+\setlength{\ParagraphWidthAw}{\arabic{ParagraphWidthAn}mm}%
+{\makebox(\arabic{PictureWidthAn},#2)[lt]{%
+ \begin{picture}(\arabic{PictureWidthAn},#2)(-#3,-#4)
+  #5
+ \end{picture}}}\quad
+{\makebox(\arabic{ParagraphWidthAn},#2)[lt]{\parbox{\ParagraphWidthAw}{#6}}}}}
+
+\newcommand{\TextPict}[9]{\noindent{\unitlength=1mm%
+\setcounter{PictureWidthAn}{#1}%
+\setcounter{ParagraphWidthAn}{180}%
+\addtocounter{ParagraphWidthAn}{-\arabic{PictureWidthAn}}%
+\addtocounter{ParagraphWidthAn}{-7}%
+\setlength{\PictureWidthAw}{\arabic{PictureWidthAn}mm}%
+\setlength{\ParagraphWidthAw}{\arabic{ParagraphWidthAn}mm}%
+\mbox{\makebox(\arabic{ParagraphWidthAn},#2)[lt]{\parbox{\ParagraphWidthAw}{#6}}\quad
+\makebox(\arabic{PictureWidthAn},#2)[lt]{%
+ \begin{picture}(\arabic{PictureWidthAn},#2)(-#3,-#4)
+  #5
+ \end{picture}}}}}
+
+
+\newcommand{\diam}{\mathop{\mathrm{diam}}}
+\newcommand{\grad}{\mathop{\mathrm{grad}}}
+\newcommand{\rot}{\mathop{\mathrm{rot}}}
+\newcommand{\divrg}{\mathop{\mathrm{div}}}
+
+
+\LARGE \tolerance=6000

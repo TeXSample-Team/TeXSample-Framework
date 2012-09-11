@@ -1,0 +1,132 @@
+
+\def\section{\setcounter{footnote}{0}%
+             \@startsection{section}{1}{0pt}%{\parindent}%
+                                   {3.5ex \@plus 1ex \@minus .2ex}%
+                                   %{2.3ex \@plus.2ex}%
+                                   {0.01ex}
+                                   {\normalfont\LARGE\bfseries}}
+\def\subsection{%\setcounter{footnote}{0}%
+                \@startsection{subsection}{2}{\parindent}%
+                                     {3.25ex\@plus 1ex \@minus .2ex}%
+                                     %{1.5ex \@plus .2ex}%
+                                     {0.01ex}
+                                     {\normalfont\LARGE\bfseries}}
+\def\subsubsection{\@startsection{subsubsection}{3}{\parindent}%
+                                     {3.25ex\@plus 1ex \@minus .2ex}%
+                                     %{1.5ex \@plus .2ex}%
+                                     {0.01ex}
+                                     {\normalfont\LARGE\bfseries}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                    {3.25ex \@plus1ex \@minus.2ex}%
+                                    {-1em}%
+                                    {\normalfont\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                                       {3.25ex \@plus1ex \@minus .2ex}%
+                                       {-1em}%
+                                      {\normalfont\bfseries}}
+
+
+
+\DeclareSymbolFont{AMSa}{U}{msa}{m}{n}
+\DeclareSymbolFont{AMSb}{U}{msb}{m}{n}
+\DeclareMathSymbol{\varkappa}{\mathord}{AMSb}{"7B}
+\DeclareMathSymbol{\leqslant}{\mathrel}{AMSa}{"36}
+\DeclareMathSymbol{\geqslant}{\mathrel}{AMSa}{"3E}
+%
+% Определим основной стиль
+%
+\@ifundefined{chapter}{\def\@mainstyle{A}}{% это не статья
+\@ifundefined{abstractname}{\def\@mainstyle{B}}% это не report
+{\def\@mainstyle{R}}}
+
+
+\message{counters,}
+\def\ralph#1{\@ralph{\@nameuse {c@#1}}}
+\def\@ralph#1{\ifcase #1\or а\or б\or в\or г\or д\or е\or ж\or з\or
+и\else\@iralph{#1}\fi
+}
+\def\@iralph#1{\ifcase #1\or\or\or\or\or\or\or\or\or\or
+     к\or л\or м\or н\or о\or п\or р\or с\or т\or у\or
+     ф\or х\or ц\or ч\or ш\or щ\or э\or ю\or я\else\@ctrerr
+     \fi}
+\def\Ralph#1{\@Ralph{\@nameuse {c@#1}}}
+\def\@Ralph#1{\ifcase #1%
+     \or А\or Б\or В\or Г\or Д\or Е\or Ж\or З\or
+     И\else\@iRalph{#1}\fi}
+\def\@iRalph#1{\ifcase #1%
+     \or\or\or\or\or\or\or\or\or\or К\or Л\or М\or
+     Н\or О\or П\or Р\or С\or Т\or У\or Ф\or Х\or Ц\or
+     Ч\or Ш\or Щ\or Э\or Ю\or Я\else\@ctrerr
+     \fi}
+
+
+
+\message{theorems,}
+\def\afterthmseparator{.}
+\expandafter\ifx\csname theoremstyle\endcsname\relax
+  \def\@begintheorem#1#2{\trivlist
+     \item[\hskip \labelsep{\bfseries #1\ #2\unskip\afterthmseparator
+  }]\itshape}
+  \def\@opargbegintheorem#1#2#3{\trivlist
+        \item[\hskip \labelsep{\bfseries #1\ #2\ (#3)\afterthmseparator
+  }]\itshape}
+\fi
+\message{running heads,}
+\def\@ArticleHeadingsCorr{%
+  \if@twoside
+   \def\ps@headings{\let\@mkboth\markboth
+   \let\@oddfoot\@empty\let\@evenfoot\@empty
+   \def\@evenhead{\thepage\hfil\slshape\leftmark}%
+   \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+    \def\sectionmark####1{\markboth {\uppercase{\ifnum \c@secnumdepth >\z@
+      \thesection\postsection \hskip 1em\relax \fi ####1}}{}}%
+    \def\subsectionmark####1{\markright {\ifnum \c@secnumdepth >\@ne
+            \thesubsection\postsubsection \hskip 1em\relax \fi ####1}}}
+  \else
+   \def\ps@headings{\let\@mkboth\markboth
+    \let\@oddfoot\@empty
+    \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+    \def\sectionmark####1{\markright {\uppercase{\ifnum \c@secnumdepth >\z@
+      \thesection\postsection \hskip 1em\relax \fi ####1}}}}
+  \fi
+}
+\def\@ReportHeadingsCorr{%
+  \if@twoside
+  \def\ps@headings{\let\@mkboth\markboth
+   \let\@oddfoot\@empty\let\@evenfoot\@empty
+   \def\@evenhead{\thepage\hfil\slshape\leftmark}%
+   \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+   \def\chaptermark####1{\markboth {\uppercase{\ifnum \c@secnumdepth >\m@ne
+        \@chapapp\ \thechapter. \fi ####1}}{}}%
+   \def\sectionmark####1{\markright {\uppercase{\ifnum \c@secnumdepth >\z@
+     \thesection. \fi ####1}}}}
+  \else
+  \def\ps@headings{\let\@mkboth\markboth
+  \let\@oddfoot\@empty
+  \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+  \def\chaptermark####1{\markright {\uppercase{\ifnum \c@secnumdepth >\m@ne
+    \@chapapp\ \thechapter. \fi ####1}}}}
+  \fi
+}
+\def\@BookHeadingsCorr{%
+\def\ps@headings{\let\@mkboth\markboth
+ \let\@oddfoot\@empty\let\@evenfoot\@empty
+ \def\@evenhead{\thepage\hfil\slshape\leftmark}%
+ \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+      \def\chaptermark####1{%
+        \markboth {\uppercase{\ifnum \c@secnumdepth >\m@ne
+          \if@mainmatter
+            \@chapapp\ \thechapter. \fi
+            ####1}}{}}%
+ \def\sectionmark####1{\markright {\uppercase{\ifnum \c@secnumdepth >\z@
+   \thesection. \fi ####1}}}}
+}
+\if A\@mainstyle % стиль - article (вставлено ".\@aftersepkern" после номера)
+  \@ArticleHeadingsCorr
+\else\if R\@mainstyle % стиль=report. Два пробела после точки заменены на один.
+  \@ReportHeadingsCorr
+\else % стиль=book (два пробела после точки заменены на один)
+  \@BookHeadingsCorr
+\fi\fi
+%
+
