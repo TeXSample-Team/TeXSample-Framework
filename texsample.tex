@@ -1,19 +1,29 @@
+%\documentclass[openany]{book}
+%\documentclass{slides}
 \documentclass{article}
-
+%\usepackage[pdftex]{web}
+\usepackage[utf8]{inputenc}
+\usepackage{ucs}
 \usepackage[dvipdfm]{graphicx}
 \usepackage{curves}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{makeidx}
-\usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
-\usepackage{ucs}
 \usepackage{texsample}
 \usepackage{wallpaper}
 \usepackage{rotating}
+\usepackage{epic}
+%\usepackage{literat}
+%\usepackage[metapost]{mfpic}
+%\opengraphsfile{myfigs}
+%\usepackage {epsfig}
+%\usepackage[pdftex,nocfg,screen,nopanel,sectionbreak]{pdfscreen}
+%\usepackage[pdftex]{myexerquiz}
+%\usepackage[dvipsnames]{color}
+%\usepackage[bookmarksnumbered,colorlinks,plainpages,backref,unicode]{hyperrefmy}
 \usepackage[bookmarksnumbered,colorlinks,plainpages,backref,unicode]{hyperref}
-
 \hypersetup{pdfpagemode=FullScreen}
 
 \newsavebox{\boxA}
@@ -43,7 +53,15 @@
 \newsavebox{\boxY}
 \newsavebox{\boxZ}
 
+%\newskip\skiptmpA
+%\topmargin=-10mm \textwidth=175 mm \evensidemargin=-0mm
+%\oddsidemargin=-0mm \emergencystretch=16pt
+
+%\skip\skiptmpA=\baselineskip \multiply \skip\skiptmpA by 55
+%\advance \skip\skiptmpA by \topskip \textheight=\skip\skiptmpA
+%%\textheight = 54\baselineskip
 \makeindex
+
 
  \paperwidth=190mm
  \paperheight=130mm
@@ -64,13 +82,34 @@
 
 \def\ifundefined#1{\expandafter\ifx\csname#1\endcsname\relax}
 
+%\newcounter{AlphTmp}
+%\newcounter{Alphx}
+%\newcounter{Alphy}
+%\def\MyAlph#1{%\setcounter{AlphTmp}{\arabic{#1}}
+%              %\ifnum\arabic{#1}<27 \Alph{#1}
+%              % \else\addtocounter{#1}{-26}
+%              %      \setcounter{Alphx}{1}
+%              %      \setcounter{Alphy}{\arabic{#1}}
+%              %      \Alph{Alphx}\Alph{Alphy}
+%              %      \addtocounter{#1}{26}
+%              %\fi
+%              П\arabic{#1}}
+%\def\Myroman#1{%\ifnum\arabic{#1}<27 \roman{#1}
+%               % \else\addtocounter{#1}{-26}
+%               %      \setcounter{Alphx}{1}
+%               %      \setcounter{Alphy}{\arabic{#1}}
+%               %      \roman{Alphx}\roman{Alphy}
+%               %      \addtocounter{#1}{26}
+%               %\fi
+%               }
+
 \newcounter{MakExecisePdf}
 \setcounter{MakExecisePdf}{0}
 \renewcommand{\theMakExecisePdf}{{\Roman{section}.}\arabic{MakExecisePdf}}
 \newcounter{MakExecisePdfPrint}
 \setcounter{MakExecisePdfPrint}{0}
  \def\MakExecisePdf#1#2{\newpage\global\refstepcounter{MakExecisePdf}
-   \expandafter\newcounter{MakExecise\roman{MakExecisePdf}Pdf}
+   %\expandafter\newcounter{MakExecise\roman{MakExecisePdf}Pdf}
    \mbox{\textbf{Задача~{\Roman{section}.}\arabic{MakExecisePdf}.}}
    \addcontentsline{toc}{section}{Задача~{\Roman{section}.}\arabic{MakExecisePdf}}
    {\large (\hyperlink{HTMakExecisePdf\arabic{MakExecisePdf}answ}{Ответ приведен на
@@ -85,6 +124,7 @@
 
  \def\MakExPrinAnsw{\setcounter{MakExecisePdfPrint}{0}
   \loop
+   %\refstepcounter{MakExecisePdfPrint}
    \ifnum\arabic{MakExecisePdfPrint}<\arabic{MakExecisePdf}
    \newpage
    \refstepcounter{MakExecisePdfPrint}
@@ -113,6 +153,7 @@
    \hyperlink{HTMakExecisePdf\arabic{MakExecisePdfPrint}}
    {\mbox{\textbf{Задача~\arabic{MakExecisePdfPrint}.}}}~%
    \newline}}
+%\rule{\parindent}{0pt}\textbf{Ответ.}~}
 
 
 \newcounter{MakRemarkPdf}
@@ -136,6 +177,7 @@
 
  \def\MakRemPrinAnsw{\setcounter{MakRemarkPdfPrint}{0}
   \loop
+   %\refstepcounter{MakRemarkPdfPrint}
    \ifnum\arabic{MakRemarkPdfPrint}<\arabic{MakRemarkPdf}
    \newpage
    \refstepcounter{MakRemarkPdfPrint}
@@ -161,6 +203,16 @@
      \framebox{\makebox(#1,#3)[lt]{\parbox{#1\textwidth}{#4}}}~~%
      \framebox{\makebox(#2,#3)[rt]{\parbox{#2\textwidth}{#5}}}}}
 
+
+%\renewcommand{\section}[1]{\refstepcounter{section}%
+%               \textbf{\LARGE\thesection{#1}}%
+%               {\addcontentsline{toc}{section}{#1}}%
+%               \setcounter{subsection}{0}%
+%               \setcounter{subsubsection}{0}}
+
+%\setlength{\parskip}{0pt plus 4pt minus 2pt}
+%\mathsurround=1pt
+
 \newcounter{TabCountGlb}
 \newcounter{RisCountGlb}
 \setcounter{TabCountGlb}{0} \setcounter{RisCountGlb}{0}
@@ -174,8 +226,10 @@
 \def\setka{%
      \multiput(-170,-110)(5,0){69}{%
         \multiput(0,0)(0,1){220}{\circle*{0.3}}}
+        %\line(0,1){220}}
      \multiput(-170,-100)(0,5){45}{%
         \multiput(0,0)(1,0){340}{\circle*{0.3}}}
+        %\line(1,0){340}}
       \multiput(-163,00.1)(10,0){34}{{\thicklines\line( 1, 0){6}}}
       \multiput(-163,-0.1)(10,0){34}{{\thicklines\line( 1, 0){6}}}
        \multiput(00.1,-113)(0,10){22}{{\thicklines\line( 0, 1){6}}}
@@ -216,6 +270,10 @@
  \def\MyCommentPdfPrint{%
       \setcounter{MyCommentPdfPrint}{0}
        \ifnum\value{MyCommentPdfMake}>0
+        %\section*{Комментарии к доказательствам и
+        %         решениям}\addcontentsline{toc}{chapter}{Комментарии
+        %         к доказательствам и решениям}
+        %\section{Комментарии к доказательствам и решениям}
        \loop
        \ifnum\value{MyCommentPdfPrint}<\value{MyCommentPdfMake}
        \refstepcounter{MyCommentPdfPrint}
@@ -239,6 +297,8 @@
 \renewcommand{\chaptername}{Глава}
 \renewcommand{\indexname}{Предметный указатель}
 \renewcommand{\tablename}{Таблица}
+%\renewcommand{\refname}{Библиографический список}
+%\renewcommand{\bibname}{Библиографический список}
 \renewcommand{\refname}{Список литературы}
 \renewcommand{\bibname}{Список литературы}
 \renewcommand{\indexname}{Предметный указатель}
@@ -253,6 +313,8 @@
 \newtheorem{zam}{\noindent \bf Замечание}%[section]
 \newtheorem{sogl}{\noindent \bf Соглашение}%[section]
 \newtheorem{aim}{\noindent \bf Цель}%[section]
+\newtheorem{law}{\noindent \bf Закон}%[section]
+\newtheorem{regul}{\noindent \bf Правило}%[section]
 
 \newcommand{\defntName}[1]{\medskip\noindent\mbox{\bf Определение~#1.}}%[section]
 \newcommand{\thmName}[1]{\medskip\noindent\mbox{\bf Теорема~#1.}}%[section]
@@ -265,6 +327,8 @@
 \newcommand{\zamName}[1]{\medskip\noindent\mbox{\bf Замечание~#1.}}%[section]
 \newcommand{\soglName}[1]{\medskip\noindent\mbox{\bf Соглашение~#1.}}%[section]
 \newcommand{\aimName}[1]{\medskip\noindent\mbox{\bf Цель~#1.}}%[section]
+\newcommand{\lawName}[1]{\medskip\noindent\mbox{\bf Закон~#1.}}%[section]
+\newcommand{\regulName}[1]{\medskip\noindent\mbox{\bf Правило~#1.}}%[section]
 
 \newcommand{\Arg}{\mathop{\rm Arg}\nolimits}
 \newcommand{\tr}{\mathop{\rm tr}\nolimits}
@@ -280,12 +344,17 @@
 \newcommand{\vectr}[1]{\overrightarrow{\bf #1}}
 \newcommand{\prc}{\mathop{\mbox{\rm пр}}\nolimits}
 \newcommand{\diez}{\mathop{\#}\limits}
+%\newcommand{\set}{\mathop{\rm set}\nolimits}
 \newcommand{\supp}{\mathop{\rm supp}\nolimits}
 \newcommand{\Irr}{\mathop{\rm Irr}\nolimits}
+
+%\newcounter{tabulcount}
+%\setcounter{tabulcount}{0}
 \newcommand{\bigref}[1]{~\ref{#1}, стр.\pageref{#1}}
 \newcommand{\mathref}[1]{~(\ref{#1}), стр.\pageref{#1}}
 \newcounter{bookyear}
 \setcounter{bookyear}{2012}
+%\normalsize
 
 \def\izdat#1{\ifnum#1<2 Редакционно-издательский отдел ГОУ ВПО УГТУ-УПИ\fi
              \ifnum#1=2 Редакционно-издательский отдел ГОУ ВПО УГТУ-УПИ\fi }
@@ -330,6 +399,27 @@
   }
 
 
+
+%\newcommand{\ThmEnvCom}[9]{%
+%    %#1 --- тип окружения: thm, lmm, defnt, zam
+%    %#2 --- метка
+%    %#3 --- формулировка теоремы, определения и др.
+%   \expandafter\newcommand\csname ComText#1#2\endcsname[6]{
+%    \ifundefined{Com#1#2}
+%     \expandafter\newcommand\csname Com#1#2\endcsname[6]{#3}
+%     \begin{#1}\expandafter\mylabel{#1#2}
+%      \csname Com#1#2\endcsname{\#1}{\#2}{\#3}{\#4}{\#5}{\#6}
+%     \end{#1}
+%    \else
+%     \expandafter\renewcommand\csname Com#1#2\endcsname[6]{#3}
+%     \addtocounter{#1}{-2}\refstepcounter{#1}
+%     \begin{#1}
+%      \csname Com#1#2\endcsname{\#1}{\#2}{\#3}{\#4}{\#5}{\#6}
+%     \end{#1}
+%    \fi}
+%  }
+
+
 \newcommand{\ThmEnvCom}[9]{%
     %#1 --- тип окружения: thm, lmm, defnt, zam
     %#2 --- метка
@@ -341,6 +431,7 @@
       \textit{\csname Com#1#2\endcsname{\#1}{\#2}{\#3}{\#4}{\#5}{\#6}}
     \else
      \expandafter\renewcommand\csname Com#1#2\endcsname[6]{#3}
+     %\addtocounter{#1}{-2}\refstepcounter{#1}
      \csname #1Name\endcsname{\ref{#1#2}}
       \textit{\csname Com#1#2\endcsname{\#1}{\#2}{\#3}{\#4}{\#5}{\#6}}
     \fi}
@@ -385,4 +476,175 @@
 \newcommand{\divrg}{\mathop{\mathrm{div}}}
 
 
+\newcounter{CountEllipsAx}\newcounter{CountEllipsBx}\newcounter{CountEllipsCx}
+\newcounter{CountEllipsAy}\newcounter{CountEllipsBy}\newcounter{CountEllipsCy}
+\newcommand{\ellipsA}[8]{{\unitlength=0.01mm
+ \begin{picture}(0,0)
+  \put(0,0){\setcounter{CountEllipsAx}{#1}\setcounter{CountEllipsBx}{#1}\setcounter{CountEllipsCx}{#1}%
+\multiply\value{CountEllipsBx} by  7\global\divide\value{CountEllipsBx} by 10%
+\multiply\value{CountEllipsCx} by 41\global\divide\value{CountEllipsCx} by 100}
+  \put(0,0){\setcounter{CountEllipsAy}{#2}\setcounter{CountEllipsBy}{#2}\setcounter{CountEllipsCy}{#2}%
+\multiply\value{CountEllipsBy} by  7\global\divide\value{CountEllipsBy} by 10%
+\multiply\value{CountEllipsCy} by 41\global\divide\value{CountEllipsCy} by 100}
+  %\put(000.00,000.00){\qbezier(#1,0)(#1,\arabic{CountEllipsCy})(\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+  %\put(000.00,000.00){\qbezier(\arabic{CountEllipsBx},\arabic{CountEllipsBy})(\arabic{CountEllipsCx},#2)(0,#2)}
+  %\put(000.00,000.00){\qbezier(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},#2)(0,#2)}
+  %\put(000.00,000.00){\qbezier(-#1,0)(-#1,\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+  %\put(000.00,000.00){\qbezier(-#1,0)(-#1,-\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+  %\put(000.00,000.00){\qbezier(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},-#2)(0,-#2)}
+  %\put(000.00,000.00){\qbezier(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(\arabic{CountEllipsCx},-#2)(0,-#2)}
+  %\put(000.00,000.00){\qbezier(#1,0)(#1,-\arabic{CountEllipsCy})(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+  \ifcase#3{%0
+   \put(000.00,000.00){\qbezier(#1,0)(#1,\arabic{CountEllipsCy})(\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\qbezier(\arabic{CountEllipsBx},\arabic{CountEllipsBy})(\arabic{CountEllipsCx},#2)(0,#2)}
+  }\or{%1
+   \put(000.00,000.00){\thicklines\color{#8}\qbezier(#1,0)(#1,\arabic{CountEllipsCy})(\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\thicklines\color{#8}\qbezier(\arabic{CountEllipsBx},\arabic{CountEllipsBy})(\arabic{CountEllipsCx},#2)(0,#2)}
+  }\or{%2
+   \put(000.00,000.00){\qbezier[#7](#1,0)(#1,\arabic{CountEllipsCy})(\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\qbezier[#7](\arabic{CountEllipsBx},\arabic{CountEllipsBy})(\arabic{CountEllipsCx},#2)(0,#2)}
+  }\or{%3
+   \put(000.00,000.00){\qbezier[#7](#1,0)(#1,\arabic{CountEllipsCy})(\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\qbezier(\arabic{CountEllipsBx},\arabic{CountEllipsBy})(\arabic{CountEllipsCx},#2)(0,#2)}
+  }\or{%4
+   \put(000.00,000.00){\qbezier(#1,0)(#1,\arabic{CountEllipsCy})(\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\qbezier[#7](\arabic{CountEllipsBx},\arabic{CountEllipsBy})(\arabic{CountEllipsCx},#2)(0,#2)}
+  }\or{%5
+   %\put(000.00,000.00){\qbezier(#1,0)(#1,\arabic{CountEllipsCy})(\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\qbezier(\arabic{CountEllipsBx},\arabic{CountEllipsBy})(\arabic{CountEllipsCx},#2)(0,#2)}
+  }\or{%6
+   \put(000.00,000.00){\qbezier(#1,0)(#1,\arabic{CountEllipsCy})(\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+   %\put(000.00,000.00){\qbezier(\arabic{CountEllipsBx},\arabic{CountEllipsBy})(\arabic{CountEllipsCx},#2)(0,#2)}
+  }\or{%7
+  }\fi
+  \ifcase#4{%0
+   \put(000.00,000.00){\qbezier(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},#2)(0,#2)}
+   \put(000.00,000.00){\qbezier(-#1,0)(-#1,\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+  }\or{%1
+   \put(000.00,000.00){\thicklines\color{#8}\qbezier(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},#2)(0,#2)}
+   \put(000.00,000.00){\thicklines\color{#8}\qbezier(-#1,0)(-#1,\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+  }\or{%2
+   \put(000.00,000.00){\qbezier[#7](-\arabic{CountEllipsBx},\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},#2)(0,#2)}
+   \put(000.00,000.00){\qbezier[#7](-#1,0)(-#1,\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+  }\or{%3
+   \put(000.00,000.00){\qbezier(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},#2)(0,#2)}
+   \put(000.00,000.00){\qbezier[#7](-#1,0)(-#1,\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+  }\or{%4
+   \put(000.00,000.00){\qbezier[#7](-\arabic{CountEllipsBx},\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},#2)(0,#2)}
+   \put(000.00,000.00){\qbezier(-#1,0)(-#1,\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+  }\or{%5
+   \put(000.00,000.00){\qbezier(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},#2)(0,#2)}
+   %\put(000.00,000.00){\qbezier(-#1,0)(-#1,\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+  }\or{%6
+   %\put(000.00,000.00){\qbezier(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},#2)(0,#2)}
+   \put(000.00,000.00){\qbezier(-#1,0)(-#1,\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},\arabic{CountEllipsBy})}
+  }\or{%7
+  }\fi
+  \ifcase#5{%0
+   \put(000.00,000.00){\qbezier(-#1,0)(-#1,-\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\qbezier(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},-#2)(0,-#2)}
+  }\or{%1
+   \put(000.00,000.00){\thicklines\color{#8}\qbezier(-#1,0)(-#1,-\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\thicklines\color{#8}\qbezier(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},-#2)(0,-#2)}
+  }\or{%2
+   \put(000.00,000.00){\qbezier[#7](-#1,0)(-#1,-\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\qbezier[#7](-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},-#2)(0,-#2)}
+  }\or{%3
+   \put(000.00,000.00){\qbezier[#7](-#1,0)(-#1,-\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\qbezier(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},-#2)(0,-#2)}
+  }\or{%4
+   \put(000.00,000.00){\qbezier(-#1,0)(-#1,-\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\qbezier[#7](-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},-#2)(0,-#2)}
+  }\or{%5
+   %\put(000.00,000.00){\qbezier(-#1,0)(-#1,-\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+   \put(000.00,000.00){\qbezier(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},-#2)(0,-#2)}
+  }\or{%6
+   \put(000.00,000.00){\qbezier(-#1,0)(-#1,-\arabic{CountEllipsCy})(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+   %\put(000.00,000.00){\qbezier(-\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(-\arabic{CountEllipsCx},-#2)(0,-#2)}
+  }\or{%7
+  }\fi
+  \ifcase#6{%0
+   \put(000.00,000.00){\qbezier(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(\arabic{CountEllipsCx},-#2)(0,-#2)}
+   \put(000.00,000.00){\qbezier(#1,0)(#1,-\arabic{CountEllipsCy})(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+  }\or{%1
+   \put(000.00,000.00){\thicklines\color{#8}\qbezier(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(\arabic{CountEllipsCx},-#2)(0,-#2)}
+   \put(000.00,000.00){\thicklines\color{#8}\qbezier(#1,0)(#1,-\arabic{CountEllipsCy})(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+  }\or{%2
+   \put(000.00,000.00){\qbezier[#7](\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(\arabic{CountEllipsCx},-#2)(0,-#2)}
+   \put(000.00,000.00){\qbezier[#7](#1,0)(#1,-\arabic{CountEllipsCy})(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+  }\or{%3
+   \put(000.00,000.00){\qbezier(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(\arabic{CountEllipsCx},-#2)(0,-#2)}
+   \put(000.00,000.00){\qbezier[#7](#1,0)(#1,-\arabic{CountEllipsCy})(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+  }\or{%4
+   \put(000.00,000.00){\qbezier[#7](\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(\arabic{CountEllipsCx},-#2)(0,-#2)}
+   \put(000.00,000.00){\qbezier(#1,0)(#1,-\arabic{CountEllipsCy})(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+  }\or{%5
+   \put(000.00,000.00){\qbezier(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(\arabic{CountEllipsCx},-#2)(0,-#2)}
+   %\put(000.00,000.00){\qbezier(#1,0)(#1,-\arabic{CountEllipsCy})(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+  }\or{%6
+   %\put(000.00,000.00){\qbezier(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})(\arabic{CountEllipsCx},-#2)(0,-#2)}
+   \put(000.00,000.00){\qbezier(#1,0)(#1,-\arabic{CountEllipsCy})(\arabic{CountEllipsBx},-\arabic{CountEllipsBy})}
+  }\or{%7
+  }\fi
+ \end{picture}
+}}
+
+
+\newcount\CountSystCoordX
+\newcount\CountSystCoordY
+
+\newcommand{\ComSystCoord}[9]{%#1 --- число единиц длины в отрезке, считающемся на чертеже единичным на оси Ox;
+                              %#2 --- число единиц длины в отрезке, считающемся на чертеже единичным на оси Oy;
+                              %#3 --- число единичных отметок слева от начала координат;
+                              %#4 --- число единичных отметок справа от начала координат;
+                              %#5 --- число единичных отметок снизу от начала координат;
+                              %#6 --- число единичных отметок сверху от начала координат;
+                              %#7 --- обозначение оси абсцисс;
+                              %#8 --- обозначение оси ординат;
+ \put(0,0){\CountSystCoordX=#3\CountSystCoordY=#4
+           \global\multiply\CountSystCoordX by #1
+           \global\multiply\CountSystCoordY by #1
+           \global\advance\CountSystCoordY by \CountSystCoordX}
+ \put(-\the\CountSystCoordX,0){\vector( 1, 0){\the\CountSystCoordY}}
+ \put(0,0){\CountSystCoordX=#3\CountSystCoordY=#4
+           \global\advance\CountSystCoordX by -1
+           \global\advance\CountSystCoordY by \CountSystCoordX
+           \global\multiply\CountSystCoordX by #1}
+ \multiput(-\the\CountSystCoordX,-00.50)(#1,0){\the\CountSystCoordY}{\line( 0, 1){001.00}}
+ \put(0,0){\CountSystCoordX=#4
+           \global\multiply\CountSystCoordX by #1}
+ \put(\the\CountSystCoordX,-01.00){\makebox(0,0)[rt]{\large$#7$}}
+ \put(0,0){\CountSystCoordX=#5\CountSystCoordY=#6
+           \global\multiply\CountSystCoordX by #2
+           \global\multiply\CountSystCoordY by #2
+           \global\advance\CountSystCoordY by \CountSystCoordX}
+ \put(0,-\the\CountSystCoordX){\vector( 0, 1){\the\CountSystCoordY}}
+ \put(0,0){\CountSystCoordX=#5\CountSystCoordY=#6
+           \global\advance\CountSystCoordX by -1
+           \global\advance\CountSystCoordY by \CountSystCoordX
+           \global\multiply\CountSystCoordX by #2}
+ \multiput(-00.50,-\the\CountSystCoordX)(0,#2){\the\CountSystCoordY}{\line( 1, 0){001.00}}
+ \put(0,0){\CountSystCoordX=#6
+           \global\multiply\CountSystCoordX by #2}
+ \put(-01.00,\the\CountSystCoordX){\makebox(0,0)[rt]{\large$#8$}}
+ #9}
+
+
+
+%\ComOverlayA{#1}
+%      {0}{}
+%      {1}{}
+%      {2}{}
+%      {3}{}
+
+\newcommand{\ComOverlayA}[9]{%
+ {\ifnum#1>#2{#3}\else\phantom{#3}\fi}{\ifnum#1>#4{#5}\else\phantom{#5}\fi}{\ifnum#1>#6{#7}\else\phantom{#7}\fi}{\ifnum#1>#8{#9}\else\phantom{#9}\fi}}
+
+
+%\newcommand{\ComOverlayA}[9]{%
+% {\ifnum#1>#2{#3\ifnum#1>#4{#5\ifnum#1>#6{#7\ifnum#1>#8{#9}\else\phantom{#9}\fi}\else\phantom{#7#9}\fi}\else\phantom{#5#7#9}\fi}\else\phantom{#3#5#7#9}\fi}}
+
+
+
 \LARGE \tolerance=6000
+%\looseness=2
